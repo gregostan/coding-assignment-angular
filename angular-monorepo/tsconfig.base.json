@@ -27,6 +27,7 @@
       "@angular-monorepo/entities/feature-location-dashboard": [
         "libs/entities/feature-location-dashboard/src/index.ts"
       ],
+      "@angular-monorepo/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

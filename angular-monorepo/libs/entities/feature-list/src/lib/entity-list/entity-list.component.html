@@ -1,0 +1,35 @@
+<div class="list">
+  <div class="list__actions">
+    <p-multiSelect class="list__actions__columns" [displaySelectedLabel]="false" placeholder="Choose columns" [filter]="false" [options]="columns"
+                   [formControl]="selectedColumnsControl"
+                   optionLabel="label"></p-multiSelect>
+    <input class="list__actions__search" pInputText type="text" [formControl]="searchControl" placeholder="Search by name or tracking id">
+  </div>
+  <p-table [value]="(entities$ | async) || []" [columns]="selectedColumnsControl.value" dataKey="entityId">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{ col.label }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr class="list__row" [routerLink]="['/entity/detail', rowData.entityId]">
+        <td *ngFor="let col of columns">
+
+            <span *ngIf="col.value !== 'isActive'; else activeColumnTemplate">{{ rowData[col.value] }}</span>
+            <ng-template #activeColumnTemplate>
+              <span *ngIf="rowData[col.value]">{{ rowData[col.value] }}</span>
+              <span *ngIf="!rowData[col.value]">
+                Inactive <i class="pi pi-exclamation-triangle" style="color: red"></i>
+              </span>
+            </ng-template>
+
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-toast></p-toast>
+<p-progressBar *ngIf="loading$ | async" mode="indeterminate" [style]="{ height: '6px' }"></p-progressBar>

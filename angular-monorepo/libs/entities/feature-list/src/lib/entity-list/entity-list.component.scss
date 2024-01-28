@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.list__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+
+  .list__actions__search {
+    flex-grow: 1;
+  }
+}
+
+.list__row {
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}

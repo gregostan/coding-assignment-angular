@@ -8,6 +8,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { BadgeModule } from 'primeng/badge';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { EntitiesFeatureHomepageModule } from '@angular-monorepo/entities/feature-homepage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,8 +20,10 @@ import { EntitiesFeatureHomepageModule } from '@angular-monorepo/entities/featur
     AvatarGroupModule,
     EntitiesFeatureHomepageModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+    BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

@@ -1,0 +1,37 @@
+<form class="details" *ngIf="entity$ | async as entity" [formGroup]="entityForm">
+  <div class="details__row">
+    <div>Entity id: </div>
+    <div>
+      {{entity.entityId}}
+    </div>
+
+  </div>
+  <div class="details__row">
+    <label for="trackingId">Tracking ID: </label>
+    <input id="trackingId" type="text" pInputText [formControl]="trackingId">
+  </div>
+
+  <div class="details__row">
+    <label for="name">Name: </label>
+    <input id="name" type="text" pInputText [formControl]="name">
+  </div>
+
+  <div class="details__row">
+    <label for="entityType">Entity Type: </label>
+    <p-dropdown id="entityType" [options]="(entityTypes$ | async) ?? []" [formControl]="entityType"
+                optionLabel="name"></p-dropdown>
+  </div>
+
+  <div class="details__row">
+    <label>Is Active: </label>
+    <div *ngIf="entity.isActive">Active</div>
+    <div *ngIf="!entity.isActive">
+      Inactive <i class="pi pi-exclamation-triangle" style="color: red"></i>
+    </div>
+
+  </div>
+
+  <button pButton type="button" [label]="entityForm.enabled ? 'Save' : 'Edit'" (click)="onAction(entity)"></button>
+</form>
+
+<p-toast></p-toast>
